@@ -1,0 +1,49 @@
+
+public class Heap_Sort {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a[] = { 59, 35, 11, 60, 17, 74, 29, 90, 83, 68 };
+		heapsort(a, a.length);
+
+		for (int i : a) {
+			System.out.print(i + " ");
+		}
+	}
+
+	static void heapsort(int[] a, int n) {
+		for (int i = n / 2 - 1; i >= 0; i--) {
+			heapify(a, n, i);
+		}
+
+		for (int i = n - 1; i > 0; i--) {
+			int temp = a[0];
+			a[0] = a[i];
+			a[i] = temp;
+
+			heapify(a, i, 0);
+		}
+	}
+
+	static void heapify(int[] a, int n, int i) {
+		int root = i;
+		int left = 2 * i + 1;
+		int right = 2 * i + 2;
+
+		if (left < n && a[left] > a[root]) {
+			root = left;
+		}
+		if (right < n && a[right] > a[root]) {
+			root = right;
+		}
+
+		if (root != i) {
+			int swap = a[i];
+			a[i] = a[root];
+			a[root] = swap;
+
+			heapify(a, n, root);
+		}
+
+	}
+}
